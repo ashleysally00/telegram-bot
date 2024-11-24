@@ -1,11 +1,11 @@
 # Thesaurus Bot with Emoji Sentiment Analysis 🤖☀️☁️ 💖
 
----
+# Thesaurus Bot with Emoji Sentiment Analysis 🤖☀️☁️ 💖
 
-<sub>_I'm working on integrating Emojipedia and additional vocabulary to make this thesaurus work with more words so that it does not just use the default emojis for words that do not match emojis in this specific dataset... Meanwhile, feel free to try it out!
+<sub>_I'm working on integrating Emojipedia and additional vocabulary to make this thesaurus work with more words so that it does not just use the default emojis for words that do not match emojis in this specific dataset... Meanwhile, feel free to try it out!_  
 🚧 - "Construction Sign"  
 Unicode Name: "Construction Sign"  
-Description/Keywords: construction, roadwork, barrier, caution, warning_</sub>
+Description/Keywords: construction, roadwork, barrier, caution, warning</sub>
 
 ---
 
