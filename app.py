@@ -1,4 +1,3 @@
-# app.py
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 from dotenv import load_dotenv
 import os
@@ -15,11 +14,8 @@ def main():
     application = Application.builder().token(BOT_TOKEN).build()
 
     # Add handlers - order matters!
-    # Command handlers first
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("thesaurus", thesaurus))
-    
-    # Message handler for non-command messages
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
     
     # Start the bot

@@ -1,9 +1,11 @@
-# commands.py
 import requests
-import pandas as pd
+import logging
 from telegram import Update
 from telegram.ext import ContextTypes
-import logging
+from emojis import EmojiMatcher
+
+# Initialize emoji matcher
+emoji_matcher = EmojiMatcher("Emoji_Sentiment_Data_v1.0.csv")
 
 # Set up logging
 logging.basicConfig(
@@ -11,14 +13,6 @@ logging.basicConfig(
     level=logging.INFO
 )
 logger = logging.getLogger(__name__)
-
-# Load the emoji sentiment dataset once when the module is imported
-try:
-    emoji_data = pd.read_csv("Emoji_Sentiment_Data_v1.0.csv", encoding="utf-8")
-    print("Emoji data loaded successfully")
-except Exception as e:
-    logger.error(f"Error loading emoji data: {e}")
-    emoji_data = None
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Send a message when the command /start is issued."""
@@ -37,32 +31,6 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Example: /thesaurus happy"
     )
     await update.message.reply_text(help_message)
-
-def get_emojis(word: str, synonyms: list) -> list:
-    """Get relevant emojis based on word and its synonyms."""
-    if emoji_data is None:
-        logger.warning("Emoji data not available, returning default emojis")
-        return ["🤔", "🔍", "✨"]
-    
-    try:
-        # Create search terms from word and synonyms
-        search_terms = [word] + synonyms
-        
-        # Search for matching emojis
-        matching_emojis = emoji_data[
-            emoji_data["Description"].str.contains('|'.join(search_terms), na=False, case=False)
-        ]
-        
-        if not matching_emojis.empty:
-            # Return top 3 emojis by sentiment score
-            return list(matching_emojis.nlargest(3, "Sentiment score")["Emoji"])
-        else:
-            logger.info(f"No matching emojis found for: {word}")
-            return list(emoji_data.nlargest(3, "Sentiment score")["Emoji"])
-            
-    except Exception as e:
-        logger.error(f"Error in get_emojis: {e}")
-        return ["🤔", "🔍", "✨"]
 
 async def get_synonyms(word: str) -> list:
     """Get synonyms for a word using Datamuse API."""
@@ -102,8 +70,8 @@ async def thesaurus(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        # Get emojis
-        emojis = get_emojis(word, synonyms)
+        # Get emojis using the improved emoji matcher
+        emojis = emoji_matcher.get_emojis(word, synonyms)
 
         # Format response
         synonyms_text = f"Synonyms for '{word}': {', '.join(synonyms)}"

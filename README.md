@@ -1,5 +1,14 @@
 # Thesaurus Bot with Emoji Sentiment Analysis 🤖☀️☁️ 💖
 
+---
+
+<sub>_I'm working on integrating Emojipedia and additional vocabulary to make this thesaurus work with more words so that it does not just use the default emojis for words that do not match emojis in this specific dataset... Meanwhile, feel free to try it out!
+🚧 - "Construction Sign"  
+Unicode Name: "Construction Sign"  
+Description/Keywords: construction, roadwork, barrier, caution, warning_</sub>
+
+---
+
 Thesaurus Bot is a Telegram bot that allows users to find synonyms for a given word along with relevant emojis. The emojis are dynamically selected based on their sentiment score from the **Emoji Sentiment Dataset**.
 
 The Emoji Sentiment Dataset used in this project is sourced from:
