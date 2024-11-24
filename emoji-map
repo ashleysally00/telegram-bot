@@ -1,32 +1,37 @@
 import requests
+import pandas as pd
 from telegram import Update
 from telegram.ext import CallbackContext
 
-# General emoji mapping by categories
-emoji_map = {
-    "happy": ["😊", "😃", "🎉"],
-    "sad": ["😢", "☹️", "💔"],
-    "angry": ["😡", "🔥", "🤬"],
-    "love": ["❤️", "😍", "💖"],
-    "nature": ["🌳", "🌷", "🌞"],
-    "default": ["🤔", "🔍", "✨"]  # Fallback emojis
-}
+# Load the emoji sentiment dataset
+emoji_data = pd.read_csv("Emoji_Sentiment_Data_v1.0.csv")
+  # Ensure this file is in your project folder
 
 def get_emojis(word, synonyms):
-    # Check if the word itself has an emoji category
-    if word in emoji_map:
-        return emoji_map[word]
+    """
+    Retrieve the top 3 emojis based on sentiment ranking.
+    - Prioritize emojis related to the word or its synonyms.
+    - Fall back to the top sentiment emojis if no direct match is found.
+    """
+    # Check if any synonyms or the word match the description in the dataset
+    matching_emojis = emoji_data[
+        emoji_data["Description"].str.contains(word, na=False, case=False)
+        | emoji_data["Description"].str.contains('|'.join(synonyms), na=False, case=False)
+    ]
     
-    # Check if any synonym matches an emoji category
-    for synonym in synonyms:
-        if synonym in emoji_map:
-            return emoji_map[synonym]
-    
-    # Return default emojis if no match is found
-    return emoji_map["default"]
+    if not matching_emojis.empty:
+        # Sort by Sentiment score (descending) and return top 3 emojis
+        return list(matching_emojis.sort_values(by="Sentiment score", ascending=False).head(3)["Emoji"])
+    else:
+        # Fallback to the top sentiment-ranked emojis
+        return list(emoji_data.sort_values(by="Sentiment score", ascending=False).head(3)["Emoji"])
 
 # Thesaurus command
 async def thesaurus(update: Update, context: CallbackContext):
+    """
+    Responds to the /thesaurus command with synonyms for the word
+    and appropriate emojis based on sentiment ranking.
+    """
     if not context.args:
         await update.message.reply_text("Usage: /thesaurus <word>")
         return
@@ -41,7 +46,7 @@ async def thesaurus(update: Update, context: CallbackContext):
             synonyms = [item['word'] for item in data[:5]]
             synonyms_text = f"Synonyms for '{word}': {', '.join(synonyms)}"
 
-            # Get emojis based on the word and its synonyms
+            # Get emojis based on sentiment ranking and context
             emojis = get_emojis(word, synonyms)
             emojis_text = f"Here are some emojis that might match: {' '.join(emojis)}"
 
