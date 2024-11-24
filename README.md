@@ -9,6 +9,11 @@ The Emoji Sentiment Dataset used in this project is sourced from:
 
 ---
 
+## Thesaurus Bot Snapshot
+
+Below is a snapshot of the Thesaurus Bot working on Telegram, showing its chatbot-like interface:
+<img src="https://github.com/ashleysally00/telegram-bot/blob/main/thesaurus-bot.png?raw=true" width="70%" alt="Thesaurus Bot in Action">
+
 ## Features
 
 - **Synonym Finder**: Get up to 5 synonyms for a given word using the Datamuse API.
@@ -37,12 +42,6 @@ The Emoji Sentiment Dataset used in this project is sourced from:
 
 Click the link below to test the bot on Telegram:
 [Test the Thesaurus Bot](https://t.me/YourBotUsername)
-
-## Thesaurus Bot Snapshot
-
-Below is a snapshot of the Thesaurus Bot working on Telegram, showing its chatbot-like interface:
-
-![Thesaurus Bot in Action](https://github.com/ashleysally00/telegram-bot/blob/main/thesaurus-bot.png?raw=true)
 
 **Important:** The online link will only work when the bot is running on my local machine. If the bot is unavailable, please follow the installation instructions above to set up and run your own instance of the bot.
 
