@@ -38,6 +38,12 @@ The Emoji Sentiment Dataset used in this project is sourced from:
 Click the link below to test the bot on Telegram:
 [Test the Thesaurus Bot](https://t.me/YourBotUsername)
 
+## Thesaurus Bot Snapshot
+
+Below is a snapshot of the Thesaurus Bot working on Telegram, showing its chatbot-like interface:
+
+![Thesaurus Bot in Action](https://github.com/ashleysally00/telegram-bot/blob/main/thesaurus-bot.png?raw=true)
+
 **Important:** The online link will only work when the bot is running on my local machine. If the bot is unavailable, please follow the installation instructions above to set up and run your own instance of the bot.
 
 _Currently, the bot defaults to a set of fallback emojis for all words due to incomplete sentiment mapping integration but I will probably fix it later today._
