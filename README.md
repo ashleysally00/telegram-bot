@@ -44,5 +44,3 @@ Click the link below to test the bot on Telegram:
 [Test the Thesaurus Bot](https://t.me/YourBotUsername)
 
 **Important:** The online link will only work when the bot is running on my local machine. If the bot is unavailable, please follow the installation instructions above to set up and run your own instance of the bot.
-
-_Currently, the bot defaults to a set of fallback emojis for all words due to incomplete sentiment mapping integration but I will probably fix it later today._
