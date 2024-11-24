@@ -1,4 +1,4 @@
-# Thesaurus Bot with Emoji Sentiment Analysis 🎉🤖☀️☁️ 💖
+# Thesaurus Bot with Emoji Sentiment Analysis 🤖☀️☁️ 💖
 
 Thesaurus Bot is a Telegram bot that allows users to find synonyms for a given word along with relevant emojis. The emojis are dynamically selected based on their sentiment score from the **Emoji Sentiment Dataset**.
 
